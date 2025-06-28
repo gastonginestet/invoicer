@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    models:
+      user: "User"
+      permission: "Permission"
+    attributes:
+      user:
+        email: "Email"
+        password: "Password"
+      permission:
+        name: "Name"
+        level: "Level"

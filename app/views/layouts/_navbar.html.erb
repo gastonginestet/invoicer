@@ -1,8 +1,15 @@
-<!-- app/views/layouts/_navbar.html.erb -->
-<header class="flex items-center justify-between px-6 py-4 bg-white border-b shadow-sm">
-  <h2 class="font-inter text-lg font-medium">Invoices</h2>
-  <div class="flex items-center gap-4">
-    <span class="font-inter text-sm text-gray-600">Gastón</span>
-    <img src="https://i.pravatar.cc/30" class="w-8 h-8 rounded-full" alt="Avatar">
-  </div>
-</header>
+<% if user_signed_in? %>
+  <header class="flex items-center justify-between px-6 py-4 bg-white border-b shadow-sm">
+    <h1 class="text-lg font-semibold text-gray-800">Invoices</h1>
+    
+    <div class="flex items-center space-x-4">
+      <div class="text-right">
+        <p class="text-sm font-medium text-gray-700">
+          <%= current_user.email %>
+        </p>
+        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "text-xs text-gray-500 hover:text-red-600" %>
+      </div>
+      <img src="https://i.pravatar.cc/40" class="w-10 h-10 rounded-full border" alt="User avatar">
+    </div>
+  </header>
+<% end %>

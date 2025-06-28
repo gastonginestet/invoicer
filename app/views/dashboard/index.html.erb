@@ -5,22 +5,22 @@
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
 
     <div class="bg-white rounded-lg shadow p-6 text-center">
-      <h2 class="text-lg font-semibold mb-2">Total Facturas</h2>
+      <h2 class="text-lg font-semibold mb-2">Invoices</h2>
       <p class="text-4xl font-bold text-indigo-600"><%= @invoices_count %></p>
-      <%= link_to "Ver facturas", invoices_path, class: "text-indigo-600 hover:underline mt-4 block" %>
+      <%= link_to "View Invoices", invoices_path, class: "text-indigo-600 hover:underline mt-4 block" %>
     </div>
 
     <div class="bg-white rounded-lg shadow p-6 text-center">
-      <h2 class="text-lg font-semibold mb-2">Total Usuarios</h2>
+      <h2 class="text-lg font-semibold mb-2">Users</h2>
       <p class="text-4xl font-bold text-indigo-600"><%= @users_count %></p>
     </div>
 
     <div class="bg-white rounded-lg shadow p-6">
-      <h2 class="text-lg font-semibold mb-4">Últimas facturas</h2>
+      <h2 class="text-lg font-semibold mb-4">Recent Invoices</h2>
       <ul class="list-disc list-inside max-h-48 overflow-auto">
         <% @recent_invoices.each do |invoice| %>
           <li>
-            <%= link_to "Factura ##{invoice.number} - $#{invoice.amount}", invoice_path(invoice), class: "text-indigo-600 hover:underline" %>
+            <%= link_to "Invoice ##{invoice.number} - $#{invoice.amount}", invoice_path(invoice), class: "text-indigo-600 hover:underline" %>
           </li>
         <% end %>
       </ul>

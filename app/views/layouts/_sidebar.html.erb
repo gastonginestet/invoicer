@@ -1,10 +1,15 @@
-<!-- app/views/layouts/_sidebar.html.erb -->
-<aside class="w-64 bg-white border-r shadow-sm">
-  <div class="h-full p-6">
-    <h1 class="font-inter text-xl font-bold mb-6">Invoicer</h1>
-    <nav class="space-y-4 text-sm">
-      <%= link_to "Dashboard", root_path, class: "font-inter block text-gray-700 hover:text-indigo-600" %>
-      <%= link_to "Facturas", invoices_path, class: "font-inter block text-gray-700 hover:text-indigo-600" %>
+<% if user_signed_in? %>
+  <aside class="w-64 min-h-screen bg-white border-r shadow-sm flex flex-col">
+    <div class="px-6 py-6">
+      <h1 class="text-2xl font-semibold text-indigo-600 tracking-tight">Invoicer</h1>
+    </div>
+
+    <nav class="flex-1 px-6 space-y-2 text-sm text-gray-700">
+      <%= link_to "Dashboard", root_path,
+          class: "block px-3 py-2 rounded-md font-medium #{current_page?(root_path) ? 'bg-gray-100 text-indigo-600' : 'hover:bg-gray-100 hover:text-indigo-600'}" %>
+
+      <%= link_to "Invoices", invoices_path,
+          class: "block px-3 py-2 rounded-md font-medium #{current_page?(invoices_path) ? 'bg-gray-100 text-indigo-600' : 'hover:bg-gray-100 hover:text-indigo-600'}" %>
     </nav>
-  </div>
-</aside>
+  </aside>
+<% end %>

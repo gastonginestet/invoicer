@@ -1,5 +1,6 @@
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /invoices or /invoices.json
   def index
