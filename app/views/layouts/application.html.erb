@@ -22,7 +22,22 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="bg-gray-100 text-gray-900">
+    <div class="flex h-screen overflow-hidden">
+
+      <!-- Sidebar -->
+      <%= render "layouts/sidebar" %>
+
+      <!-- Main content -->
+      <div class="flex flex-col flex-1">
+        <!-- Navbar -->
+        <%= render "layouts/navbar" %>
+
+        <!-- Page content -->
+        <main class="flex-1 overflow-y-auto p-6">
+          <%= yield %>
+        </main>
+      </div>
+    </div>
   </body>
 </html>

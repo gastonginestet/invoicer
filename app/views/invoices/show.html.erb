@@ -1,0 +1,24 @@
+<div class="bg-white shadow rounded-lg p-6 space-y-4">
+  <h3 class="text-xl font-semibold text-gray-900">Factura #<%= @invoice.id %></h3>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+    <div>
+      <dt class="font-medium text-gray-500">Cliente</dt>
+      <dd class="text-gray-900"><%= @invoice.client_name %></dd>
+    </div>
+    <div>
+      <dt class="font-medium text-gray-500">Monto</dt>
+      <dd class="text-gray-900">$<%= @invoice.amount %></dd>
+    </div>
+    <div>
+      <dt class="font-medium text-gray-500">Estado</dt>
+      <dd class="text-gray-900"><%= @invoice.status.capitalize %></dd>
+    </div>
+    <div>
+      <dt class="font-medium text-gray-500">Fecha</dt>
+      <dd class="text-gray-900"><%= l(@invoice.created_at.to_date) %></dd>
+    </div>
+  </div>
+
+  <%= link_to "Volver al listado", invoices_path, class: "inline-block mt-4 text-sm text-indigo-600 hover:underline" %>
+</div>

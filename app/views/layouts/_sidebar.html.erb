@@ -1,0 +1,10 @@
+<!-- app/views/layouts/_sidebar.html.erb -->
+<aside class="w-64 bg-white border-r shadow-sm">
+  <div class="h-full p-6">
+    <h1 class="font-inter text-xl font-bold mb-6">Invoicer</h1>
+    <nav class="space-y-4 text-sm">
+      <%= link_to "Dashboard", root_path, class: "font-inter block text-gray-700 hover:text-indigo-600" %>
+      <%= link_to "Facturas", invoices_path, class: "font-inter block text-gray-700 hover:text-indigo-600" %>
+    </nav>
+  </div>
+</aside>
