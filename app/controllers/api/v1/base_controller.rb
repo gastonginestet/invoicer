@@ -9,7 +9,7 @@ module Api
       private
 
       def not_found
-        render json: { error: 'Not Found' }, status: :not_found
+        render json: { error: "Not Found" }, status: :not_found
       end
 
       def unprocessable_entity(exception)
@@ -18,7 +18,7 @@ module Api
 
       def authenticate_user_jwt!
         unless current_user
-          render json: { error: 'Unauthorized' }, status: :unauthorized
+          render json: { error: "Unauthorized" }, status: :unauthorized
         end
       end
 
@@ -26,12 +26,12 @@ module Api
         return @current_user if defined?(@current_user)
 
         # Extraer JWT del header Authorization
-        token = request.headers['Authorization']&.split(' ')&.last
+        token = request.headers["Authorization"]&.split(" ")&.last
         return nil unless token
 
         begin
           decoded = Warden::JWTAuth::TokenDecoder.new.call(token)
-          @current_user = User.find(decoded['sub'])
+          @current_user = User.find(decoded["sub"])
         rescue StandardError
           nil
         end

@@ -16,17 +16,17 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       devise_for :users,
-        path: '',
+        path: "",
         path_names: {
-          sign_in: 'login',
-          sign_out: 'logout',
-          registration: 'sign_up'
+          sign_in: "login",
+          sign_out: "logout",
+          registration: "sign_up"
         },
         controllers: {
-          sessions: 'api/v1/sessions',
-          registrations: 'api/v1/registrations'
+          sessions: "api/v1/sessions",
+          registrations: "api/v1/registrations"
         }
-      resources :invoices, only: [:index, :create]
+      resources :invoices, only: [ :index, :create ]
     end
   end
 

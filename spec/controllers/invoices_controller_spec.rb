@@ -24,7 +24,6 @@ require 'rails_helper'
 # `rails-controller-testing` gem.
 
 RSpec.describe InvoicesController, type: :controller do
-
   # This should return the minimal set of attributes required to create a valid
   # Invoice. As you add validations to Invoice, be sure to
   # adjust the attributes here as well.
@@ -52,7 +51,7 @@ RSpec.describe InvoicesController, type: :controller do
   describe "GET #show" do
     it "returns a success response" do
       invoice = Invoice.create! valid_attributes
-      get :show, params: {id: invoice.to_param}, session: valid_session
+      get :show, params: { id: invoice.to_param }, session: valid_session
       expect(response).to be_successful
     end
   end
@@ -67,7 +66,7 @@ RSpec.describe InvoicesController, type: :controller do
   describe "GET #edit" do
     it "returns a success response" do
       invoice = Invoice.create! valid_attributes
-      get :edit, params: {id: invoice.to_param}, session: valid_session
+      get :edit, params: { id: invoice.to_param }, session: valid_session
       expect(response).to be_successful
     end
   end
@@ -76,19 +75,19 @@ RSpec.describe InvoicesController, type: :controller do
     context "with valid params" do
       it "creates a new Invoice" do
         expect {
-          post :create, params: {invoice: valid_attributes}, session: valid_session
+          post :create, params: { invoice: valid_attributes }, session: valid_session
         }.to change(Invoice, :count).by(1)
       end
 
       it "redirects to the created invoice" do
-        post :create, params: {invoice: valid_attributes}, session: valid_session
+        post :create, params: { invoice: valid_attributes }, session: valid_session
         expect(response).to redirect_to(Invoice.last)
       end
     end
 
     context "with invalid params" do
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post :create, params: {invoice: invalid_attributes}, session: valid_session
+        post :create, params: { invoice: invalid_attributes }, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -102,14 +101,14 @@ RSpec.describe InvoicesController, type: :controller do
 
       it "updates the requested invoice" do
         invoice = Invoice.create! valid_attributes
-        put :update, params: {id: invoice.to_param, invoice: new_attributes}, session: valid_session
+        put :update, params: { id: invoice.to_param, invoice: new_attributes }, session: valid_session
         invoice.reload
         skip("Add assertions for updated state")
       end
 
       it "redirects to the invoice" do
         invoice = Invoice.create! valid_attributes
-        put :update, params: {id: invoice.to_param, invoice: new_attributes}, session: valid_session
+        put :update, params: { id: invoice.to_param, invoice: new_attributes }, session: valid_session
         expect(response).to redirect_to(invoice)
       end
     end
@@ -117,7 +116,7 @@ RSpec.describe InvoicesController, type: :controller do
     context "with invalid params" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         invoice = Invoice.create! valid_attributes
-        put :update, params: {id: invoice.to_param, invoice: invalid_attributes}, session: valid_session
+        put :update, params: { id: invoice.to_param, invoice: invalid_attributes }, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -127,15 +126,14 @@ RSpec.describe InvoicesController, type: :controller do
     it "destroys the requested invoice" do
       invoice = Invoice.create! valid_attributes
       expect {
-        delete :destroy, params: {id: invoice.to_param}, session: valid_session
+        delete :destroy, params: { id: invoice.to_param }, session: valid_session
       }.to change(Invoice, :count).by(-1)
     end
 
     it "redirects to the invoices list" do
       invoice = Invoice.create! valid_attributes
-      delete :destroy, params: {id: invoice.to_param}, session: valid_session
+      delete :destroy, params: { id: invoice.to_param }, session: valid_session
       expect(response).to redirect_to(invoices_url)
     end
   end
-
 end
