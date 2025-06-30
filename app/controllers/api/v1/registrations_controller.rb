@@ -4,7 +4,6 @@ module Api
     class RegistrationsController < BaseController
       include Devise::Controllers::Helpers
 
-      skip_before_action :authenticate_user!, only: [ :create ]
       respond_to :json
 
       def create
