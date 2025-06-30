@@ -1,0 +1,6 @@
+<%= turbo_stream.append "invoices" do %>
+  <%= render partial: "invoice", locals: { invoice: @invoice } %>
+<% end %>
+
+<%= turbo_stream.replace "modal" do %>
+<% end %>

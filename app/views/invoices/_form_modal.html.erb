@@ -1,0 +1,47 @@
+<%= turbo_frame_tag "modal" do %>
+  <div 
+    data-controller="modal"
+    data-action="click@window->modal#close"
+    data-modal-target="container"
+    class="fixed inset-0 bg-opacity-25 flex items-center justify-center z-50 transition duration-200 opacity-0 scale-95"
+  >
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6 space-y-4 relative">
+      <%= link_to "×", "#", data: { action: "modal#close" }, class: "absolute top-2 right-3 text-gray-400 hover:text-gray-600 text-xl font-bold" %>
+
+      <h2 class="text-xl font-bold">
+        <%= invoice.persisted? ? "Edit Invoice" : "New Invoice" %>
+      </h2>
+
+      <%= form_with(model: invoice, data: { turbo_frame: "modal" }) do |form| %>
+        <% if invoice.errors.any? %>
+          <div class="bg-red-50 border border-red-200 text-red-800 p-4 rounded-lg text-sm">
+            <ul class="list-disc list-inside space-y-1">
+              <% invoice.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div>
+          <%= form.label 'Invoice ID', class: "block text-sm font-medium text-gray-700" %>
+          <%= form.text_field :number, class: "w-full mt-1 rounded-md border-gray-300 text-sm shadow-sm" %>
+        </div>
+
+        <div>
+          <%= form.label :amount, class: "block text-sm font-medium text-gray-700" %>
+          <%= form.number_field :amount, step: "0.01", min: 0, class: "w-full mt-1 rounded-md border-gray-300 text-sm shadow-sm" %>
+        </div>
+
+        <div>
+          <%= form.label :description, class: "block text-sm font-medium text-gray-700" %>
+          <%= form.text_field :description, class: "w-full mt-1 rounded-md border-gray-300 text-sm shadow-sm" %>
+        </div>
+
+        <div class="pt-4 flex justify-end">
+          <%= form.submit class: "bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 text-sm" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

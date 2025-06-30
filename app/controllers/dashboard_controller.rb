@@ -2,8 +2,7 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
   def index
-    @invoices_count = Invoice.count
-    @users_count = User.count
-    @recent_invoices = Invoice.order(created_at: :desc).limit(5)
+    @invoices_count = Invoice.for_user(current_user).count
+    @recent_invoices = Invoice.for_user(current_user).recent
   end
 end

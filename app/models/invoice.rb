@@ -3,9 +3,9 @@ class Invoice < ApplicationRecord
 
   validates :number, :amount, presence: true
 
-  enum :status, [:pending, :paid, :overdue]
+  enum :status, [ :pending, :paid, :overdue ]
 
-  def client_name
-    user.email.split('@').first.capitalize
-  end
+  scope :for_user, ->(user) { where(user_id: user.id) }
+
+  scope :recent, -> { order(created_at: :desc).limit(5) }
 end

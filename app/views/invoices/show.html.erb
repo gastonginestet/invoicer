@@ -1,24 +1,38 @@
-<div class="bg-white shadow rounded-lg p-6 space-y-4">
-  <h3 class="text-xl font-semibold text-gray-900">Factura #<%= @invoice.id %></h3>
+<div class="max-w-4xl mx-auto p-6">
+  <div class="bg-white shadow rounded-lg p-6 space-y-6">
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-    <div>
-      <dt class="font-medium text-gray-500">Cliente</dt>
-      <dd class="text-gray-900"><%= @invoice.client_name %></dd>
+    <div class="flex items-center justify-between">
+      <h1 class="text-2xl font-bold text-gray-900">Invoice #<%= @invoice.id %></h1>
+      <%= link_to "Back to list", invoices_path, class: "text-sm text-indigo-600 hover:underline" %>
     </div>
-    <div>
-      <dt class="font-medium text-gray-500">Monto</dt>
-      <dd class="text-gray-900">$<%= @invoice.amount %></dd>
-    </div>
-    <div>
-      <dt class="font-medium text-gray-500">Estado</dt>
-      <dd class="text-gray-900"><%= @invoice.status.capitalize %></dd>
-    </div>
-    <div>
-      <dt class="font-medium text-gray-500">Fecha</dt>
-      <dd class="text-gray-900"><%= l(@invoice.created_at.to_date) %></dd>
-    </div>
+
+    <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-sm">
+      <div>
+        <dt class="font-medium text-gray-500">Amount</dt>
+        <dd class="mt-1 text-gray-900">$<%= @invoice.amount %></dd>
+      </div>
+
+      <div>
+        <dt class="font-medium text-gray-500">Status</dt>
+        <dd class="mt-1 text-gray-900">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+            <%= case @invoice.status
+                when "paid" then "bg-green-100 text-green-800"
+                when "pending" then "bg-yellow-100 text-yellow-800"
+                when "overdue" then "bg-red-100 text-red-800"
+                else "bg-gray-100 text-gray-800"
+                end %>">
+            <%= @invoice.status.capitalize %>
+          </span>
+        </dd>
+      </div>
+
+      <div>
+        <dt class="font-medium text-gray-500">Date</dt>
+        <dd class="mt-1 text-gray-900"><%= l(@invoice.created_at.to_date) %></dd>
+      </div>
+
+      <%# Optional: add more fields here, like client name or number %>
+    </dl>
   </div>
-
-  <%= link_to "Volver al listado", invoices_path, class: "inline-block mt-4 text-sm text-indigo-600 hover:underline" %>
 </div>
