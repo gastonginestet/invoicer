@@ -11,7 +11,10 @@ development:
 
 test:
   <<: *default
-  database: invoicer_test
+  database: <%= ENV["PG_DATABASE"] || "invoicer_test" %>
+  username: <%= ENV["PG_USERNAME"] || "postgres" %>
+  password: <%= ENV["PG_PASSWORD"] || "postgres" %>
+  host: <%= ENV["PG_HOST"] || "localhost" %>
 
 production:
   <<: *default
